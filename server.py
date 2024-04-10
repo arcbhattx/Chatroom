@@ -10,6 +10,20 @@ def handle_client(client_socket):  #Handles client socket.
         if not data: #if theres no data or in other words the client has closed connection then break out the loop for that client.
             break
         msg = data.decode('utf-8') #decodes that data so we can get the string message.
+
+        user = ""
+
+        for x in msg:
+            if x == ":":
+                break
+            user += x
+
+        for users in clients:
+            if users != user:
+                clients.append(user)
+            else:
+                break
+
         print(msg)  #prints received message to the server
         #response = "Server received your message: " + msg  
         #client_socket.sendall(response.encode('utf-8'))
