@@ -1,29 +1,29 @@
 import tkinter as tk
-from tkinter import scrolledtext
 
-class ChatroomApp:
-    def __init__(self, master):
-        self.master = master
-        master.title("Chatroom")
+def on_button_click(user_input):
+    # Retrieve text from the entry widget when the button is clicked
+    user_input = entry.get()
+    display_box.insert(tk.END, user_input + "\n")  # Insert the user's message into the display box
 
-        # Create scrolled text widget to display messages
-        self.chat_box = scrolledtext.ScrolledText(master, width=40, height=20)
-        self.chat_box.grid(row=0, column=0, columnspan=2, padx=10, pady=10)
+# Create the main window
+window = tk.Tk()
 
-        # Create entry widget for typing messages
-        self.message_entry = tk.Entry(master, width=30)
-        self.message_entry.grid(row=1, column=0, padx=10, pady=5)
+# Set properties
+window.title("Chat Window")  # Title of the window
+window.geometry("400x400")  # Size of the window (width x height)
+window.configure(bg="white")  # Background color of the window
 
-        # Create send button
-        self.send_button = tk.Button(master, text="Send", command=self.send_message)
-        self.send_button.grid(row=1, column=1, padx=10, pady=5)
+# Create an entry widget
+entry = tk.Entry(window)
+entry.pack(pady=10, padx=10, fill=tk.X)  # Add some padding around the entry widget and fill it horizontally
 
-    def send_message(self):
-        message = self.message_entry.get()
-        if message:
-            self.chat_box.insert(tk.END, "You: " + message + "\n")
-            self.message_entry.delete(0, tk.END)
+# Create a button
+button = tk.Button(window, text="Submit", command=on_button_click)
+button.pack(pady=5)
 
-root = tk.Tk()
-app = ChatroomApp(root)
-root.mainloop()
+# Create a display box
+display_box = tk.Text(window, height=20, width=40)
+display_box.pack(padx=10, pady=10)
+
+# Run the event loop
+window.mainloop()

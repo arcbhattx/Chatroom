@@ -1,7 +1,6 @@
 import socket
 import threading
 
-
 clients = [] #Users
 
 def handle_client(client_socket):  #Handles client socket.
@@ -52,7 +51,6 @@ def main():  #main function to create a server sockeet that handles multiple cli
             #This provides the arguments to the handle_client function. args expects a tuple, hence the comma after client_socket. client_socket is presumably a socket object representing a connection to a client. So, the handle_client function is expected to take one argument, which is a client socket.
         client_handler.start()
             #just starts the threading.
-
 
 if __name__ == "__main__":
     main() #calls main function when ran
